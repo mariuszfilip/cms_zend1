@@ -1,0 +1,71 @@
+<style type="text/css">
+	#error_newslleter_form{
+		margin-top:5px !important;
+		color:red;
+	}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".play").change(function() {
+		var data_form = $(".form_newsletter").serialize();
+		 $.ajax({
+             type: 'POST',
+             url: '<?php echo $this->url(array('controller'=>'show','action'=>'newsletterbox')); ?>',
+             data: data_form,
+             dataType: 'json',
+             success: function(data) {
+                    if(data.result == 'success'){
+                        $('#info_newsletter').hide();
+                    	$('#error_newslleter_form').html(data.messages);
+                    }else{
+						$('#error_newslleter_form').html(data.messages);
+                    }
+             }
+    	 });
+    	 return false;
+	});
+	
+});
+$(document).ready(function() {
+	$("#email_newslletter").click(function() {
+        $("#email_newslletter").attr("value","");
+	});
+	$("#email_newslletter").blur(function() {
+		if($(this).val()== ''){
+        	$("#email_newslletter").attr("value","adres e-mail");
+		}
+	});
+});
+
+
+</script>
+						<div class="newsletter">
+    						<div class="newsletter_text to_left">
+    							<h2><i18n>Biuletyn informacyjny</i18n></h2>
+    							<p><i18n>newsletter.description</i18n></p>
+    						</div>
+    						<div class="newsletter_form to_left">
+    							<form class="form_newsletter" method="post">
+    							<fieldset id="info_newsletter">
+    								
+    								<input class="input_text" id="email_newslletter" name="email" value="<i18n>yours.email</i18n>" />
+                                    <div class="wypisz">
+    								<div class="to_left">
+    								<input type="radio" name="newsletter" value="1" class="to_left input_radio play" /> <i18n>newsletter.subscriber</i18n>
+    								</div>
+    								<div class="to_left">
+    								<input type="radio" name="newsletter" value="0" class="to_left play" /> <i18n>newsletter.unsubscribe</i18n>
+    								</div>
+                                </div>
+    							</fieldset>
+    							
+    						</form>
+    						<div id="error_newslleter_form"></div>
+							<div style="clear: both;"></div>
+						</div>
+						<div style="clear: both;"></div>
+    						<div class="newsletter_bottom">
+    							<span title="<i18n>newsletter.law.title</i18n>"><i18n>newsletter.law</i18n></span> | <span title="<i18n>newsletter.archive.title</i18n>"><i18n>newsletter.archive</i18n></span>
+    						</div>
+						</div>
+

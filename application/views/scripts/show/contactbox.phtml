@@ -1,0 +1,25 @@
+<div id="error_contact_form" style="color:red;"></div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#contact_form_submit").click(function() {
+		var data_form = $("#contact_form").serialize();
+		 $.ajax({
+             type: 'POST',
+             url: '<?php echo $this->url(array('controller'=>'show','action'=>'contactbox')); ?>',
+             data: data_form,
+             dataType: 'json',
+             success: function(data) {
+                    if(data.result == 'success'){
+                    	$('#contact_form').find('input:text, input:password, input:file, select, textarea').val('');
+                    	$('#contact_form').find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+                    	$('#error_contact_form').html(data.messages);
+                    }else{
+						$('#error_contact_form').html(data.messages);
+                    }
+             }
+    	 });
+    	 return false;
+	});
+});
+</script>
+<?php echo $this->form; ?>

@@ -1,0 +1,6 @@
+
+	<?php 
+	    foreach($this->layout()->lang as $key=> $value):
+           echo '<p class="to_left lang_icons" ><a href="'.$this->url(array('controller'=>'language','action'=>'change','lang'=>$value['id'])).'">'.$value['name'].'</a></p>';
+	    endforeach;
+	?>

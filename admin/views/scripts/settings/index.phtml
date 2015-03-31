@@ -1,0 +1,31 @@
+<div class="g_12">
+					<div class="widget_header">
+						<h4 class="widget_header_title wwIcon i_16_tables">Ustawienia strony</h4>
+					</div>
+					<div class="widget_contents noPadding">
+						<table class="tables">
+							<thead>
+								<tr>
+									<th>Nazwa</th>
+									<th>Wartosc</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($this->settings as $key => $value): ?>
+								<?php if($key != 'id'): ?>
+								<tr>
+									<td><?php echo $key; ?></td>
+									<td><?php echo $value; ?></td>
+
+								</tr>
+								<?php endif; ?>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+</div>
+<div class="line_grid">
+    <div class="g_9"><input type="button" class="submitIt simple_buttons"
+    	value="Edytuj"
+    	onclick="window.location.href='<?php echo $this->baseUrl();?>/admin.php/settings/edit';">
+</div>

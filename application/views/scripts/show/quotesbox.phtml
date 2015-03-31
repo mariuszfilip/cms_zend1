@@ -1,0 +1,84 @@
+			
+                <?php 
+				
+				function getPercent($first_value,$second_value){
+				    $wynik =  (($second_value/$first_value)*100)-100;
+				    $wynik = round($wynik,'2');
+				    return $wynik;
+				}
+				?>
+				
+					<div>
+						<?php if($this->liffe && !empty($this->liffe)): ?>
+						<div class="table">
+						    <?php 
+							    if(isset($this->liffe[0]['date'])):
+							        $data = $this->liffe[0]['date'];    
+							    endif;
+							?>
+							<div style="width:100%;padding:10px; text-align:center;"><h5>Notowania zbóz z giełdy NYSE LIFFE PARIS<br/>EUR</h5></div>
+							<div class="table_head_left to_left table_background"><i18n>notowania.tabela.name</i18n></div ><div class="table_head_center to_left table_background"><?php echo $data; ?></div><div class="table_head_right to_left table_background"><i18n>change.to.day</i18n> %</div>
+							
+							<?php 
+							$count = 0; 
+							foreach($this->liffe as $liffe): 
+							$class = '';
+							$count++;
+							if($count % 2 == 0):
+							    $class='table_background';
+							endif;
+							?>
+							<div class="table_body_left to_left <?php echo $class; ?>" title="<?php echo $liffe['name']; ?>"><?php echo $this->Shorttext($liffe['name'],10); ?></div ><div class="table_body to_left <?php echo $class; ?>"><?php echo $liffe['close']; ?></div><div class="table_body to_left <?php echo $class; ?>"><?php echo getPercent($liffe['close'],$liffe['close_last']); ?></div>
+							<?php endforeach; ?>
+							
+						</div>
+						<?php endif; ?>
+						<?php if($this->cme && !empty($this->cme)): ?>
+							
+						<div class="table">
+							<?php 
+							    if(isset($this->cme[0]['date'])):
+							        $data = $this->cme[0]['date'];    
+							    endif;
+							?>
+							<div style="width:100%;padding:10px; text-align:center;"><h5>Notowania paliw z giełdy CME<br/>USD</h5></div>
+							<div class="table_head_left to_left table_background"><i18n>notowania.tabela.name</i18n></div ><div class="table_head_center to_left table_background"><?php echo $data; ?></div><div class="table_head_right to_left table_background"><i18n>change.to.day</i18n> %</div>
+							
+							<?php 
+							$count = 0; 
+							foreach($this->cme as $cme): 
+							$class = '';
+							$count++;
+							if($count % 2 == 0):
+							    $class='table_background';
+							endif;
+							?>
+							<div class="table_body_left to_left <?php echo $class; ?>" title="<?php echo $cme['name']; ?>"><?php echo $this->Shorttext($cme['name'],20); ?></div ><div class="table_body to_left <?php echo $class; ?>"><?php echo $cme['close']; ?></div><div class="table_body to_left <?php echo $class; ?>"><?php echo getPercent($cme['close'],$cme['close_last']); ?></div>
+							<?php endforeach; ?>
+						</div>
+						<?php endif; ?>
+						<?php if($this->nbp && !empty($this->nbp)): ?>
+						<div class="table">
+							<?php 
+							    if(isset($this->nbp[0]['date'])):
+							        $data = $this->nbp[0]['date'];    
+							    endif;
+							?>
+							<div style="width:100%;padding:10px; text-align:center;"><h5>Notowania walut NBP</h5></div>
+							<div class="table_head_left to_left table_background"><i18n>notowania.tabela.name</i18n></div ><div class="table_head_center to_left table_background"><?php echo $data; ?></div><div class="table_head_right to_left table_background"><i18n>change.to.day</i18n> %</div>
+							
+							<?php 
+							$count = 0; 
+							foreach($this->nbp as $nbp): 
+							$class = '';
+							$count++;
+							if($count % 2 == 0):
+							    $class='table_background';
+							endif;
+							?>
+							<div class="table_body_left to_left <?php echo $class; ?>" title="<?php echo $nbp['name']; ?>"><?php echo $this->Shorttext($nbp['name'],10); ?></div ><div class="table_body to_left <?php echo $class; ?>"><?php echo $nbp['close']; ?></div><div class="table_body to_left <?php echo $class; ?>"><?php echo getPercent($nbp['close'],$nbp['close_last']); ?></div>
+							<?php endforeach; ?>
+						</div>
+						<?php endif; ?>
+					</div>
+

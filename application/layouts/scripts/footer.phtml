@@ -1,0 +1,51 @@
+					
+			<div style="clear: both; height: 60px;"></div>
+			<div style="cursor:pointer;" id="up" onclick="$('#page').scrollIntoView({duration: 'slow',direction: 'y'});">
+					<i18n>go_to_up</i18n> <img src="<?php echo $this->baseUrl(); ?>/page/css/image/arrow_uppage.png" />
+				</div>
+			<div id="footer">
+				<div class="copyright_foot to_left">
+					<i18n>copyrights</i18n>
+				</div>
+				<div class="submenu_foot to_left">
+						<?php 
+						    $count = 0;
+                    	    foreach($this->layout()->menufooter as $key => $value):
+                    	          
+                        	      foreach($value as $key2 => $value2):
+                        	          if($count == 0){
+                        	               echo '<ul style="float:left;">';              
+                        	          }
+                        	          $count++;
+                                      echo '<li id="count_'.$count.'"><a href="'.$this->url(array('controller'=>'page','action'=>'index','name'=>$value2['name_link'])).'">'.$value2['name'].'</a></li>';
+                                      if($count == 8){
+                        	               echo '</ul>';
+                        	               $count=0;              
+                        	          }
+                                  endforeach;
+                    	    endforeach;
+                    	?>
+				</div>
+				<div class="contact_foot to_left">
+					<p><i18n>footer_contact</i18n></p>
+					<div> </div>
+					<i18n>bzk_address</i18n>,<br />
+					<i18n>bzk_city</i18n><br />
+					<br />
+					<i18n>bzk_tel</i18n><br />
+					<i18n>bzk_fax</i18n> <br />
+				</div>
+				<div class="social_foot ">
+					<div class="social_text">
+						<h4><i18n>social_media</i18n></h4>
+						<br/>
+						<i18n>social_media_description</i18n>
+						
+					</div>
+					<a href="#"><div class="social_fb"></div></a>
+					<a href="#"><div class="social_in"></div></a>
+					<a href="#"><div class="social_tw"></div></a>
+				</div>
+			</div>					
+							
+						

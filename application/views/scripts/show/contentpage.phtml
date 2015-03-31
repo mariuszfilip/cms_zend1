@@ -1,0 +1,22 @@
+<div class="column_left">
+					<div class="shadow_top"></div>
+					<div class="sub_menu">
+						<h2><i18n>list.the.same.content</i18n></h2>
+						<ul>
+							<?php foreach($this->menu as $key => $value):
+                                echo '<li><a href='.$this->url(array('controller'=>'show','action'=>'contentpage','id'=>$value['id'])).'>'.$value['title'].'</a></li>';
+							    endforeach;
+							?>
+						</ul>
+					</div>
+					<div class="shadow_bot"></div>
+					
+</div>
+<div class="column_center">
+<div class="main_content">
+<?php
+echo '<h2>'.$this->data['title'].'</h2>';
+echo '<p>'.$this->data['content'].'</p>';
+?>
+</div>
+</div>

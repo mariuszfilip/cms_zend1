@@ -1,0 +1,117 @@
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    	$("#button_form_agent").click(function() {
+    		var data_form = $("#form_agent").serialize();
+    		 $.ajax({
+                 type: 'POST',
+                 url: '<?php echo $this->url(array('controller'=>'show','action'=>'notification')); ?>',
+                 data: data_form,
+                 dataType: 'json',
+                 success: function(data) {
+                        if(data.result == 'success'){
+                        	$('#error_agent_form').html(data.messages);
+                        }else{
+    						$('#error_agent_form').html(data.messages);
+                        }
+                 }
+        	 });
+        	 return false;
+    	});
+    	
+    });
+	$(document).ready(function() {
+        	$('br').remove();
+
+			$("#agent_form_name").click(function() {
+                $("#agent_form_name").attr("value","");
+       		 });
+			$("#agent_form_name").blur(function() {
+				if($(this).val()== ''){
+                $("#agent_form_name").attr("value","<i18n>name</i18n>");
+				}               
+       		 });
+			$("#agent_form_email").click(function() {
+                $("#agent_form_email").attr("value","");
+       		 });
+			$("#agent_form_email").blur(function() {
+				if($(this).val()== ''){
+                $("#agent_form_email").attr("value","<i18n>email.address</i18n>");
+				}               
+       		 });
+			$("#agent_form_phone").click(function() {
+                $("#agent_form_phone").attr("value","");
+       		 });
+			$("#agent_form_phone").blur(function() {
+				if($(this).val()== ''){
+                $("#agent_form_phone").attr("value","<i18n>phone.number</i18n>");
+				}               
+       		 });      		 
+	});
+	</script>
+
+<div class="main_content">
+<div class="agent">
+
+						<h2 class="clean"><i18n>contact-form</i18n></h2>
+						<div class="clean"></div>
+
+						
+						
+							
+							<form id="form_agent">
+								<fieldset>
+								<div class="dane_text">
+									<p>
+										<input type="text"  name="name" id="agent_form_name" value="<i18n>name</i18n>" class="text">
+								    </p>
+
+									<p>
+										<input type="text" id="agent_form_email" name="email" value="<i18n>email.address</i18n>" class="text">
+									</p>
+									<p>
+										<input type="text" name="phone" id="agent_form_phone" value="<i18n>phone.number</i18n>" class="text">
+									</p>
+
+								</div>    <!-- pole formularza do wypelnienia -->
+						            <?php if(isset($this->id)): ?>
+										<input type="hidden" name="id" value="<?php echo $this->id; ?>" />
+										<div class="to_left">
+											<div class="button" id="button_form_agent"><span><i18n>send</i18n></span></div>
+										</div>
+								    <?php else: ?>
+								    <div class="dane_choice">
+								    <div>
+								    	<select name="id">
+								    		<option value="0">Wybierz produkt</option>
+								    		<?php foreach($this->layout()->marquee as $aMarquee): ?>
+								    		<option value="<?php echo $aMarquee['id']; ?>"><?php echo $aMarquee['name']; ?></option>
+								    		<?php endforeach; ?>
+								    	</select>
+									</div>
+									
+									<div>
+										<input type="radio" name="tranzakcja" value="1"><label><i18n>buy</i18n></label>
+										<input type="radio" name="tranzakcja" value="2"><label><i18n>sell</i18n></label>
+									</div>	
+									
+										
+									
+									</div>									
+									<textarea class="to_left uniform" name="content"></textarea>
+										
+									<div class="button" id="button_form_agent"><span><i18n>send</i18n></span></div>
+								    <?php endif; ?>
+
+								
+								
+								</fieldset>
+								<div id="error_agent_form" style="color:red; font-style:bold; padding-top:3px; padding-left:10px"></div>
+							</form>	
+							
+							
+						</div>
+
+						
+</div>
+</div>

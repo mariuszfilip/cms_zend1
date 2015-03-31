@@ -1,0 +1,20 @@
+<?php 
+foreach($this->data as $key => $value){
+    echo '<div class="news">';
+
+    echo '<h4 class="tittle">'.$value['title'].'</h4>';
+   	$ciag=0;
+	
+	if(strlen($value['content']) > '500'){
+		
+			$ciag = (substr(strip_tags($value['content']),0, 500));
+			$ciag .= ' ...';
+			 
+	}
+	
+    echo '<p>'.$ciag.'</p>';
+    //echo '<div class="time">'.date('d-m-Y',strtotime($value['date_add'])).'</div>';
+    
+    echo '<div class="more"><a href="'.$this->url(array('controller'=>'show','action'=>'contentpage','id'=>$value['id'])).'"><div></div><i18n>more</i18n>...</a></div></div>';
+}
+?>

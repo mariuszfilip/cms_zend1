@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+	<title>CMS - INSELIS</title>
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="../Javascript/Flot/excanvas.js"></script>
+	<![endif]-->
+	<!-- The Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet">
+	<!-- The Main CSS File -->
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/admin/css/style.css'); ?>
+	 <?php echo $this->jQuery()->setCdnSsl(true)->setVersion('1.7')->enable()->setUiLocalPath('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')->UIenable(); ?>
+		<?php echo $this->headScript()->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.tipsy.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.collapsible.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.prettyPhoto.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.colorbox.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/uniform.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.validationEngine-en.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.validationEngine.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.dualListBox.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/datatable.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/tablesort.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/resizable.min.js')
+									//->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.sparkline.min.js')
+									//->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.resize.js')
+									//->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.pie.js')
+									//->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.orderBars.js')
+									//->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.js')
+									
+									
+									//->appendFile($this->baseUrl().'/admin/js/jquery.ajaxfileupload.js')
+									; ?>
+
+</head>
+<body>
+	<!-- Change Pattern -->
+	<div class="changePattern">
+		<span id="pattern1"></span>
+		<span id="pattern2"></span>
+		<span id="pattern3"></span>
+		<span id="pattern4"></span>
+		<span id="pattern5"></span>
+		<span id="pattern6"></span>
+	</div>
+	<!-- Top Panel -->
+	<div class="top_panel">
+		<div class="wrapper">
+			<div class="user">
+				<?php $admin_session_space = new Zend_Session_Namespace('admin_space'); ?>
+				<img src="<?php echo $this->baseUrl(); ?>/admin/Images/user_avatar.png" alt="user_avatar" class="user_avatar">
+				<span class="label"><?php echo $admin_session_space->admin->first_name.' '.$admin_session_space->admin->last_name; ?></span>
+				<!-- Top Tooltip -->
+				<div class="top_tooltip">
+					<div>
+						<ul class="user_options">
+							<li class="i_16_profile"><a href="#" title="Profile"></a></li>
+							<li class="i_16_tasks"><a href="#" title="Tasks"></a></li>
+							<li class="i_16_notes"><a href="#" title="Notes"></a></li>
+							<li class="i_16_options"><a href="#" title="Options"></a></li>
+							<li class="i_16_logout"><a href="#" title="Log-Out"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="top_links">
+				<ul>
+					<li class="i_22_search search_icon">
+						<div class="top_tooltip right_direction">
+							<div>
+								<form class="top_search_form">
+									<input type="text" class="top_search_input">
+									<input type="submit" class="top_search_submit" value="">
+								</form>
+							</div>
+						</div>
+					</li>
+					<li class="i_22_settings">
+						<a href="<?php echo $this->url(array('controller'=>'auth','action'=>'logout')); ?>" title="Wyloguj">
+							<span class="label">Wyloguj</span>
+						</a>
+					</li>
+					<li class="i_22_settings">
+						<a href="<?php echo $this->url(array('controller'=>'settings','action'=>'index')); ?>" title="Settings">
+							<span class="label">Ustawienia strony</span>
+						</a>
+					</li>
+					<li class="i_22_inbox top_inbox">
+						<a href="#" title="Inbox">
+							<span class="label lasCount">Inbox</span>
+							<span class="small_count">3</span>
+						</a>
+					</li>
+					<li class="i_22_pages">
+						<a href="<?php echo $this->url(array('controller'=>'pages','action'=>'index')); ?>" title="Pages">
+							<span class="label">Strony</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<header class="main_header">
+		<div class="wrapper">
+			<div class="logo">
+				<a href="#" Title="INSELIS">
+					<img src="<?php echo $this->baseUrl(); ?>/admin/Images/inselis.png" alt="kanrisha_logo">
+				</a>
+			</div>
+			<nav class="top_buttons">
+				<ul>
+					<li class="big_button">
+						<div class="out_border">
+							<div class="button_wrapper">
+								<div class="in_border">
+									<a href="#" title="Analytics" class="the_button">
+										<span class="i_32_statistic"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="big_button">
+						<div class="big_count">
+							<span>7</span>
+						</div>
+						<div class="out_border">
+							<div class="button_wrapper">
+								<div class="in_border">
+									<a href="#" title="Support" class="the_button">
+										<span class="i_32_support"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="big_button">
+						<div class="out_border">
+							<div class="button_wrapper">
+								<div class="in_border">
+									<a href="#" title="Delivery" class="the_button">
+										<span class="i_32_delivery"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="big_button">
+						<div class="out_border">
+							<div class="button_wrapper">
+								<div class="in_border">
+									<a href="#" title="Earning" class="the_button">
+										<span class="i_32_dollar"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<div class="wrapper small_menu">
+		<ul class="menu_small_buttons">
+			<li><a title="General Info" class="i_22_dashboard smActive" href="index.html"></a></li>
+			<li><a title="Your Messages" class="i_22_inbox" href="inbox.html"></a></li>
+			<li><a title="Visual Data" class="i_22_charts" href="charts.html"></a></li>
+			<li><a title="Kit elements" class="i_22_ui" href="ui.html"></a></li>
+			<li><a title="Some Rows" class="i_22_tables" href="tables.html"></a></li>
+			<li><a title="Some Fields" class="i_22_forms" href="forms.html"></a></li>
+		</ul>
+	</div>
+
+	<div class="wrapper contents_wrapper">
+		<?php 
+						$request = Zend_Controller_Front::getInstance()->getRequest();
+		
+		?>
+		<aside class="sidebar">
+			<ul class="tab_nav">
+				<li class="<?php if($request->getControllerName() == 'index'): echo 'active_tab'; endif; ?> i_32_dashboard" >
+					<a href="<?php echo $this->url(array('controller'=>'index','action'=>'index')); ?>" title="Strona Główna">
+						<span class="tab_label">Dashboard</span>
+						<span class="tab_info">Informacje ogólne</span>
+					</a>
+				</li>
+				<li class="i_32_charts">
+					<a href="#" title="Statystyki">
+						<span class="tab_label">Statystyki</span>
+						<span class="tab_info">Bedzie dodane w przyszłosci</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'pages'): echo 'active_tab'; endif; ?> i_32_tables">
+					<a href="<?php echo $this->url(array('controller'=>'pages','action'=>'index')); ?>" title="Strony">
+						<span class="tab_label">Strony</span>
+						<span class="tab_info">Lista oraz ich edycja</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'content'): echo 'active_tab'; endif; ?> i_32_tables">
+					<a href="<?php echo $this->url(array('controller'=>'content','action'=>'index')); ?>" title="Nowosci">
+						<span class="tab_label">Kontent</span>
+						<span class="tab_info">Lista wiadomosci , ofert na stronie</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'jobs'): echo 'active_tab'; endif; ?> i_32_tables">
+					<a href="<?php echo $this->url(array('controller'=>'jobs','action'=>'index')); ?>" title="Nowosci">
+						<span class="tab_label">Ofert pracy</span>
+						<span class="tab_info">Oferty pracy , lista aplikacji na oferty</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'files'): echo 'active_tab'; endif; ?> i_32_tables">
+					<a href="<?php echo $this->url(array('controller'=>'files','action'=>'index')); ?>" title="Nowosci">
+						<span class="tab_label">Pliki</span>
+						<span class="tab_info">Dodawanie plików,przypisanie do stron</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'lang'): echo 'active_tab'; endif; ?> i_32_tables">
+					<a href="<?php echo $this->url(array('controller'=>'lang','action'=>'index')); ?>" title="Tłumacznie tagi">
+						<span class="tab_label">Tłumaczenia</span>
+						<span class="tab_info">Tagi</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'newsletter'): echo 'active_tab'; endif; ?> i_32_inbox">
+					<a href="<?php echo $this->url(array('controller'=>'newsletter','action'=>'index')); ?>" title="Newsletter">
+						<span class="tab_label">Newsletter</span>
+						<span class="tab_info">Lista odbiorców</span>
+					</a>
+				</li>
+				<li class="<?php if($request->getControllerName() == 'users'): echo 'active_tab'; endif; ?> i_32_ui">
+					<a href="<?php echo $this->url(array('controller'=>'users','action'=>'index')); ?>" title="Uzytkownicy">
+						<span class="tab_label">Uzytkownicy</span>
+						<span class="tab_info">Zarządzanie</span>
+					</a>
+				</li>
+
+			</ul>
+		</aside>
+
+		<div class="contents">
+			<div class="grid_wrapper">
+			<?php echo $this->layout()->content; ?>
+			</div>
+		</div>
+
+	</div>
+
+	<footer>
+		<div class="wrapper">
+			<span class="copyright">
+				COPYRIGHT � 2012 INSELIS
+			</span>
+		</div>
+	</footer>
+</body>
+</html>

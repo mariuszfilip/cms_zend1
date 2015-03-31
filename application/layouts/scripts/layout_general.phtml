@@ -1,0 +1,193 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+	 <?php echo $this->headTitle(); ?>
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<!-- The Main CSS File -->
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" media="screen" href="/page/css/layerslider/css/layerslider.css">
+	<link type="text/css" rel="stylesheet" media="screen" href="/page/css/layerslider/css/skins/lightskin/skin.css">
+	<link type="text/css" rel="stylesheet" media="screen" href="/page/css/formcss.css">
+	<link type="text/css" rel="stylesheet" media="screen" href="/page/css/tiptip.cs">
+	<link type="text/css" rel="stylesheet" media="screen" href="/page/css/style.css">
+
+	<script type="text/javascript" src='/page/css/layerslider/jQuery/jquery-1.6.2.min.js'></script>
+	<script type="text/javascript" src='/page/js/strona.js'></script>
+	<script type="text/javascript" src='/page/js/jquery.js'></script>
+	<script type="text/javascript" src='/page/css/layerslider/jQuery/jquery-easing-1.3.js'></script>
+	<script type="text/javascript" src='/page/css/layerslider/js/layerslider.kreaturamedia.jquery.js'></script>
+
+<script type="text/javascript">
+				$(document).ready(function() {
+        			//$('br').remove();
+					$(function(){
+						$("#apply_form input,#apply_form textarea,#apply_form select,#apply_form button").uniform();
+						$("#contact_form input,#contact_form textarea,#contact_form select,#contact_form button").uniform();
+						$("#form_agent input,#form_agent textarea,#form_agent select,#form_agent button").uniform();				
+					});
+				});
+	</script>				
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var center =  $('.center').height();
+			var left = $('.left').height();
+			var right = $('.right').height();
+			var height = center;
+			if(left > height){
+				height = left;
+			}
+			if(right > height){
+				height = right;
+			}
+			$('.left').height(height);
+			$('.center').height(height);
+			$('.right').height(height);
+		});
+	
+			$(document).ready(function() {
+    			$(function(){
+    				$(".table_body_left .newsletter_bottom").tipTip({maxWidth: "auto", edgeOffset: 10});
+    			});
+    		    <!--
+    		    $(function () {
+    		        // basic version is: $('div.demo marquee').marquee() - but we're doing some sexy extras
+    		        
+    		        $('div.notowania marquee').marquee('pointer').mouseover(function () {
+    		            $(this).trigger('stop');
+    		        }).mouseout(function () {
+    		            $(this).trigger('start');
+    		        }).mousemove(function (event) {
+    		            if ($(this).data('drag') == true) {
+    		                this.scrollLeft = $(this).data('scrollX') + ($(this).data('x') - event.clientX);
+    		            }
+    		        }).mousedown(function (event) {
+    		            $(this).data('drag', true).data('x', event.clientX).data('scrollX', this.scrollLeft);
+    		        }).mouseup(function () {
+    		            $(this).data('drag', false);
+    		        });
+    		    });
+    		    //-->
+			});
+	</script>	
+</head>
+<body>
+                <?php 				
+				function getPercent2($first_value,$second_value){
+				    $wynik =  (($second_value/$first_value)*100)-100;
+				    $wynik = round($wynik,'2');
+				    return $wynik;
+				}
+				?>
+
+
+	<div id="page">
+			
+		<div id="contener">
+			<div class="menu">
+				<div class="menu_center">
+    				<?php include 'menu.phtml'?>
+				</div>
+			</div>
+			<div id="head">
+				<div class="logos">
+					<div class="logo">
+						<a href="/"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/logo.png" alt="<i18n>bzk.logo</i18n>" /></a>
+				</div>
+				
+				<div class="partner">
+						<a target="_blank" href="http://www.bakoma.pl/pl/"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/bacoma.png" alt="<i18n>bacoma.logo</i18n>" class="to_left" /></a>
+						<a target="_blank" href="http://www.bioagra-oil.pl/"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/bioagra-oil.png" alt="<i18n>bioagraoil.logo</i18n>" class="to_left" /></a>
+						<a target="_blank" href="http://www.bioagra.pl/"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/bioagra.png" alt="<i18n>bioagra.logo</i18n>" class="to_left" /></a>
+						<a target="_blank" href="http://www.komagra.pl/"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/komagra.png" alt="<i18n>komagra.logo</i18n>" class="to_left" /></a>
+						<a target="_blank" href="http://www.polskiemlyny.pl"><img src="<?php echo $this->baseUrl(); ?>/page/css/image/mlyny.png" alt="<i18n>mlyny.logo</i18n>" class="to_left" /> </a>
+				</div>
+				
+				</div>
+				
+				
+				
+
+<div id="dim">
+
+			<div id="layerslider">
+
+				<div class="ls-layer" style="slidedelay: 7000;">
+
+					<img class="ls-bg" src="/page/css/gallery/clean-png.png" alt="layer">
+
+					<img class="ls-s1" src="/page/css/gallery/l10.png" alt="sublayer" style="slidedirection:right;slideoutdirection:left;">
+                     <div class="ls-s2" style="position: absolute; top:300px; left: 0px; slidedirection : bottom; slideoutdirection : bottom; durationin : 1000; durationout : 750;delayin : 500; background: #fff;width:460px;height:180px;"></div> 
+                     <p  class="ls-s3" style="position: absolute; top:320px; left: 50px; slidedirection : bottom; slideoutdirection : top; durationin : 1000; durationout : 750; delayin : 800; color:#08062b; font-size:2em;">  Zdrowie ziemi</br> przyszłością plonów </p>    
+                     <p  class="ls-s3" style="position: absolute; top:400px; left: 50px; slidedirection : bottom; slideoutdirection : bottom; durationin : 1000; durationout : 750; delayin : 1300; color:#08062b; font-size:0.9em;line-height:1.4em;"> Działalność BZK Group kompetentnie łączy efekty pracy</br> Polskich rolników. </p> 
+                   
+                    <div class="ls-s4" style="position: absolute; top:200px; left: 850px; slidedirection : right; slideoutdirection : right; durationin : 1000; durationout : 750;delayin : 500; background: #006433; width:300px;height:90px;color:#fff;">
+                    <img  src="/page/css/gallery/l20mini.png" style="width:100px;"></img></div> 
+
+                     <p  class="ls-s3" style="position: absolute; top:210px; left: 970px; slidedirection : right; slideoutdirection : right; durationin : 1000; durationout : 750; delayin : 1300; color:#fff; font-size:0.9em;line-height:1.4em;">Zdrowie Ziemi </br> przyszloscia plonów</p> 
+				</div>		
+
+				<div class="ls-layer" style="slidedelay: 7000;">
+
+					<img class="ls-bg" src="/page/css/gallery/clean-png.png" alt="layer">
+
+					<img class="ls-s1" src="/page/css/gallery/l20.png" alt="sublayer" style="slidedirection:right;slideoutdirection:left;">
+                     <div class="ls-s2" style="position: absolute; top:300px; left: 0px; slidedirection : bottom; slideoutdirection : bottom; durationin : 1000; durationout : 750;delayin : 500; background: #fff;width:460px;height:180px;"></div> 
+                     <p  class="ls-s3" style="position: absolute; top:320px; left: 50px; slidedirection : bottom; slideoutdirection : top; durationin : 1000; durationout : 750; delayin : 800; color:#08062b; font-size:2em;">  Zdrowie ziemi</br> przyszłością plonów </p>    
+                     <p  class="ls-s3" style="position: absolute; top:400px; left: 50px; slidedirection : bottom; slideoutdirection : bottom; durationin : 1000; durationout : 750; delayin : 1300; color:#08062b; font-size:0.9em;line-height:1.4em;"> Działalność BZK Group kompetentnie łączy efekty pracy</br> Polskich rolników. </p> 
+                    <div class="ls-s4" style="position: absolute; top:200px; left: 850px; slidedirection : right; slideoutdirection : right; durationin : 1000; durationout : 750;delayin : 500; background: #006433; width:300px;height:90px;color:#fff;">
+                    <img  src="/page/css/gallery/l10mini.png" style="width:100px;"></img></div> 
+
+                     <p  class="ls-s3" style="position: absolute; top:210px; left: 970px; slidedirection : right; slideoutdirection : right; durationin : 1000; durationout : 750; delayin : 1300; color:#fff; font-size:0.9em;line-height:1.4em;">Zdrowie Ziemi </br> przyszloscia plonów</p>                      
+				</div>						
+			</div>
+</div>
+</div>
+<!-- slider content -->
+   				
+				<div class="notowania" >
+				
+				<marquee behavior="scroll" direction="left" scrollamount="2" width="100%">
+						<i18n>click.to.submit.offer</i18n>:
+						<?php 
+						    foreach($this->layout()->marquee as $aMarquee):
+
+                                echo '<a style="color:#67b7ff;" href="'.$this->url(array('controller'=>'show','action'=>'notificationpage','id'=>$aMarquee['id'])).'">'.$aMarquee['name'].'</a> | ';
+						    endforeach;
+						?>	
+				</marquee>			
+				</div>
+				
+				<div id="body">
+				<div class="where"> <i18n>you.are.here</i18n>: 
+					<a>
+					<?php 
+      					  $count_bread = count($this->layout()->breadcrumb);
+       						 $count = 0;
+          			          foreach($this->layout()->breadcrumb as $breadcrumb):
+           			             echo '<b>'. $breadcrumb .'</b>';
+             		           $count++;
+              		          if($count != $count_bread){
+              		              echo ' <img src="'.$this->baseUrl().'/page/css/image/arrow_place.png" />';
+               			         }
+             			       endforeach;
+                    ?></a>
+				</div>
+
+					<?php echo $this->layout()->content; ?>
+
+				</div>
+				
+			<?php include 'footer.phtml';?>
+			</div>
+			
+		</div>
+		</div>		
+</body>
+</html>

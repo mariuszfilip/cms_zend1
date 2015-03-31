@@ -1,0 +1,25 @@
+<?php if(count($this->submenu) > 0): ?>
+    <div class="sub_menu">
+        <h3><?php echo $this->page['name']; ?></h3>
+        <ul>
+            <?php foreach($this->submenu as $key => $value):
+            echo '<li><a href='.$this->url(array('controller'=>'page','action'=>'index','name'=>$value['name_link'])).'>'.$value['name'].'</a></li>';
+            endforeach;
+            ?>
+        </ul>
+    </div>
+<?php else: ?>
+    <div class="sub_menu">
+        <?php foreach($this->submenu as $subkey => $subvalue):   ?>
+        <ul><a href='<?php echo $this->url(array('controller'=>'page','action'=>'index','name'=>$subvalue['name_link'])) ?>'><?php echo $subvalue['name']; ?></a></ul>
+        <?php if(isset($subvalue['children'])): ?>
+        <ul>
+            <?php foreach($subvalue['children'] as $key => $value):
+            echo '<li><a href='.$this->url(array('controller'=>'page','action'=>'index','name'=>$value['name_link'])).'>'.$value['name'].'</a></li>';
+            endforeach;
+            ?>
+        </ul>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

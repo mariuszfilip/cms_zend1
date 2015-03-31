@@ -1,0 +1,12 @@
+<?php 
+foreach($this->data as $key => $value){
+    echo '<div class="news">';
+    echo '<h4 class="to_left">'.$value['title'].'</h4> ';
+    
+    //echo '<div class="clean"></div>';
+    echo '<p>'.$value['content'].'</p>';
+    echo '<div class="more"><div></div></div>';
+    //echo '<div class="time">'.date('d-m-Y',strtotime($value['date_add'])).'</div>';
+    echo '</div>';
+}
+?>

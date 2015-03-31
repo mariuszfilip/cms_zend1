@@ -1,0 +1,16 @@
+<div class="download">
+	<b><i18n>download</i18n></b>
+	<div class="clean"></div>
+	<i18n>files</i18n>
+	</div>
+<ul>
+	<?php
+	
+	if($this->files): 
+		
+	foreach($this->files as $key => $value):
+	    echo '<li><a href='.$this->url(array('controller'=>'show','action'=>'download','id'=>$value['id'])).'>'.$value['name'].'</a></li>';
+	endforeach; 
+	endif;
+	?>
+</ul>

@@ -1,0 +1,40 @@
+
+	<ul>
+	<?php 
+	    foreach($this->layout()->menu as $key=> $value):
+           echo '<li><a href="'.$this->url(array('controller'=>'page','action'=>'index','name'=>$value['name_link'])).'">'.$value['name'].'</a>';
+           if(isset($value['children'])){
+               echo '<ul>';
+               foreach($value['children'] as $key2=> $value2):
+                    echo '<li><a href="'.$this->url(array('controller'=>'page','action'=>'index','name'=>$value2['name_link'])).'">'.$value2['name'].'</a></li>';
+               endforeach;
+               echo '</ul>';
+           }
+           echo '</li>';
+	    endforeach;
+	?>
+	</ul>
+	<script type="text/javascript">
+	$(document).ready(function() {
+    	$('#body .news p , #body .news span , #body .news strong').jfontsize({
+    		btnMinusMaxHits: 1,
+            btnPlusMaxHits: 1,
+            sizeChange: 5
+    	});
+	});
+	
+	</script>
+	<div class="lang">
+						
+			<div class="separator to_left">
+						<a href="#" class="to_left" style="color:white; cursor:pointer; font-size: 8pt; padding: 31px 0px;" id="jfontsize-minus" >A-</a> 
+						<p class="to_left" >|</p> 
+						<a href="#" class="to_left" style="cursor:pointer; font-size: 11pt; padding: 28px 0px; color:white;" id="jfontsize-default">A</a>
+						<p class="to_left" >|</p> 
+						<a href="#" class="to_left" style="cursor:pointer; font-size: 13pt; padding: 25px 0px; color:white;" id="jfontsize-plus" >A+</a>
+			</div>
+			<div class="separator to_left">
+						<?php include 'lang.phtml'; ?>
+			</div>
+	</div>
+	

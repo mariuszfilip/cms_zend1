@@ -1,0 +1,41 @@
+<?php echo $this->headScript()->appendFile( $this->baseUrl().'/admin/js/wyswig/ckeditor.js'); ?>
+<div class="g_6 contents_header">
+    <h3 class="i_16_forms tab_label"><?php echo $this->title; ?></h3>
+    <div><span class="label"><?php echo $this->description; ?></span></div>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+<div class="g_12">
+<p><?php echo $this->error; ?></p>
+<?php echo $this->form; ?>
+</div>
+<?php echo '<script type="text/javascript">
+	if( $("#content").length ){
+	CKEDITOR.replace(\'content\', 
+		{	
+			filebrowserBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html\',
+			filebrowserImageBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html?type=Images\',
+			filebrowserFlashBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html?type=Flash\',
+			filebrowserUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files\',
+			filebrowserImageUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images\',
+			filebrowserFlashUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash\',
+
+		} 
+ 	); 
+ 	}
+	</script>'; ?>
+	<?php echo '<script type="text/javascript">
+	if( $("#short_content").length ){
+	CKEDITOR.replace(\'short_content\', 
+		{	
+			filebrowserBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html\',
+			filebrowserImageBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html?type=Images\',
+			filebrowserFlashBrowseUrl : \''.$this->baseUrl().'/admin/js/ckfinder/ckfinder.html?type=Flash\',
+			filebrowserUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files\',
+			filebrowserImageUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images\',
+			filebrowserFlashUploadUrl : \''.$this->baseUrl().'/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash\',
+
+		} 
+ 	); 
+ 	}
+	</script>'; ?>

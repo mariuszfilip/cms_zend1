@@ -1,0 +1,287 @@
+<?php if(count($this->messages) > 0): ?>
+			        <?php foreach($this->messages as $message): ?>
+                        <div class="nNote nInformation hideit">
+                        <p><strong><i18n>result</i18n></strong><?php echo $message; ?></p>
+                        </div>
+			        <?php endforeach; ?>
+<?php endif; ?>
+
+
+<!-- BEGIN WIDGET BODY -->
+				<div class="widget_header wwOptions">
+						<h4 class="widget_header_title wwIcon i_16_data">Lista</h4>
+						<div class="w_Options i_16_settings">
+							<!-- Drop Menu -->
+						</div>
+						<form name="">
+    						<select name="lang" style="float:right;display:block;margin-top:10px; margin-right:10px;" onchange="submit();">
+    						<?php 
+    						foreach($this->languages as $language): 
+    						    echo '<option value="'.$language['id'].'"';
+                                if($this->lang == $language['id']):
+                                    echo 'selected=selected';
+    						    endif;
+    						    echo '>'.$language['name'].'</option>';
+    						endforeach;
+    						?>
+    						</select>
+						</form>
+					</div>
+					<div class="widget_contents noPadding">
+                        <table id="list-table" style="width:100%;" class="datatable tables">
+                        <thead></thead>
+                        <tbody></tbody>
+                        </table>
+                    </div>
+
+
+
+<div id="ajaxForm" style="display: none;"></div>
+<div id="delete-confirm" style="display: none;">
+<p>Czy napewno usunąc zaznaczone ?</p>
+</div>
+<div id="none-selected" style="display: none;">
+Nic nie wybrano.
+</div>
+
+
+<script type="text/javascript">
+var gaiSelected = [];
+var oTable;
+
+$(document).ready(function(){
+
+	initClickAction();
+		
+	oTable = $("#list-table").dataTable({
+		fnHeaderCallback: function( nHead, aData, iStart, iEnd, aiDisplay ) {
+    	nHead.getElementsByTagName('th')[0].innerHTML = '<input type="checkbox" id="select-all">';
+  		},
+		bJQueryUI: true,
+		sPaginationType: "full_numbers",
+		sDom: '<""l>t<"F"fp>',
+		bScrollCollapse: true,
+		bServerSide: true,
+		sAjaxSource: "<?php echo $this->baseUrl(); ?>/admin.php/jobs/index/lang/<?php echo $this->lang; ?>",
+		sServerMethod: "post",
+		aoColumnDefs: [
+		       		
+		      { aTargets: [0], mDataProp: 'id', 'sTitle': "Zaznacz", 'sWidth': "35px", 'bSortable': false, 'bSearchable': false,  mDataProp: function(aData, typeCall, toSet) {
+		    	  	var html = '<input class="select-row" type="checkbox" id="' + aData.id + '">';
+					if($.inArray(aData.id, gaiSelected) != -1) {
+						html = '<input class="select-row" type="checkbox" id="' + aData.id + '" checked="checked">';
+					}
+					return html;
+			      }
+		       },
+			  { aTargets: [1], mDataProp: 'title', sTitle: "Tytuł", sWidth: "200px" },
+			  { aTargets: [2], mDataProp: 'name_lang', sTitle: "Język", sWidth: "200px" },
+			  { aTargets: [3], mDataProp: 'date_add', sTitle: "Data dodania", sWidth: "80px" },
+			  { aTargets: [4],
+	  			    bSortable: false,
+	  			    bSearchable: false,
+	  			    sWidth: "50px",  
+	  			    mDataProp: fnSetEditButton
+	  		   }
+	  		 
+			],
+			oLanguage: {
+				oPaginate: {
+					sFirst: "Początek",
+					sNext: "Następny",
+					sPrevious: "Poprzedni",
+					sLast: "Koniec",
+				},
+				sEmptyTable: "Brak wyników",
+				sInfo: "Stron _START_ - _END_ z _TOTAL_",
+				sSearch: "Szukaj",
+				sLengthMenu: "Wierzy na stronie _MENU_",
+				sInfoEmpty: "Brak wyników",
+				sZeroRecords: "Nie znaleziono pasujących rekordów"
+
+			},
+		fnRowCallback: function( nRow, aData, iDisplayIndex ) {
+			if($.inArray(aData.id, gaiSelected) != -1) {
+				$(nRow).addClass('row_selected');
+			}
+			$(nRow).addClass('gradeA');
+			return nRow;
+		}
+	});
+
+	// zaznaczanie listy przez klikni�cie na wierszu
+	$('#list-table tbody tr').live('click', function () {
+		var aData = oTable.fnGetData( this );
+		var iId = aData.id;
+		
+		if ( $.inArray(iId, gaiSelected) == -1 )
+		{
+			selectRow(iId, this);
+		}
+		else
+		{
+			deselectRow(iId, this);
+		}
+		
+		
+	} );
+	function fnSetEditButton(aData, typeCall, toSet) {
+	  	var html = '<a href="<?php echo $this->baseUrl(); ?>/admin.php/jobs/edit/id/' + aData.id + '" class="simple_buttons submitIt"><span>Edycja</span></a>';
+		return html;
+    }
+
+
+	// wsparcie dla "zaznacz wszystko"
+	$('#select-all').live('click', function (event) {
+		if($(this).hasClass("checked")) {
+			$(this).removeClass("checked");
+			$('#list-table tbody tr').each( function(index, object) {
+				aData = oTable.fnGetData( object );
+				deselectRow(aData.id, object);
+			});
+		} else {
+			$(this).addClass("checked");
+			$('#list-table tbody tr').each( function(index, object) {
+				aData = oTable.fnGetData( object );
+				selectRow(aData.id, object);
+			});
+		}
+	});
+
+	// wsparcie dla usuwania wybranych list
+	$("#delete-selected").live("click", function(event) {
+		if(gaiSelected.length > 0) {
+			$( "#delete-confirm" ).dialog({
+				resizable: false,
+				height:140,
+				modal: true,
+				buttons: {
+					"Tak": function() {
+						$( this ).dialog( "close" );
+						deleteSelected();
+					},
+					"Nie": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+
+		} else {
+
+			$( "#none-selected" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}
+	});
+
+
+	$(".editForm").live('click', function(event) {
+		event.preventDefault();
+		var link = $(this).attr('href');
+		initColorbox(link);
+	});
+
+});
+
+function selectRow(iId, nRow) {
+	gaiSelected[gaiSelected.length++] = iId;
+	$("input[id=" + iId + "]").attr("checked", "checked");
+	$(nRow).addClass('row_selected');
+}
+
+function deselectRow(iId, nRow) {
+	$("input[id=" + iId + "]").removeAttr("checked");
+	gaiSelected = $.grep(gaiSelected, function(value) {
+		return value != iId;
+	} );
+	$(nRow).removeClass('row_selected');
+}
+function deselectRow2(dataTable, iId, nRow) {
+	$(dataTable).find("input[id=" + iId + "]").removeAttr("checked");
+	dataTable.fnSettings().gaiSelected = $.grep(dataTable.fnSettings().gaiSelected, function(value) {
+		return value != iId;
+	} );
+	$(nRow).removeClass('row_selected');
+}
+function deleteSelected() {
+	var selected = gaiSelected.join();
+	var table = $('#select-all').parents("table");
+	var dTable = table.dataTable();
+	var rows = table.find("tbody tr");
+
+		rows.each( function(index, object) {
+			aData = dTable.fnGetData( object );
+			deselectRow(aData.id, object);
+	});
+	$.ajax({
+		url: "<?php echo $this->baseUrl(); ?>/admin.php/jobs/delete",
+		type: "post",
+		data: {selected: selected},
+		dataType: "json",
+		success: function(json) {
+			oTable.fnDraw(false);
+			$("span#lists-removed").html(json.listsRemoved);
+			$("span#subscr-removed").html(json.countRemoved);
+			$("#delete-report").dialog({
+				resizable: false,
+				height:140,
+				modal: true,
+				buttons: {
+					"OK": function() {
+						$( this ).dialog( "close" );
+					},
+				}
+			});
+		}		
+	}); 
+}
+
+function initClickAction(){
+	$('.addForm').click(function(event){
+		event.preventDefault();
+		var link = $(this).attr('href');		
+		initColorbox(link);
+	});
+
+	$('.editForm').click(function(event){
+		event.preventDefault();
+		var link = $(this).attr('href');
+		initColorbox(link);
+	});
+
+	$('.deleteForm').click(function(event){
+		event.preventDefault();
+		var link = $(this).attr('href');
+		initColorbox(link);
+	});
+}
+
+function initColorbox(link){
+	$('#ajaxForm').load(link, function(){
+		$.colorbox({
+			inline: true,
+			href: '.ajaxWrapper',
+			width: '70%',
+			onComplete: function(){
+				$('.ajaxWrapper select, .ajaxWrapper input:checkbox').uniform();
+				$('.closeLb').click(function(event){
+					event.preventDefault();
+					$.colorbox.close();
+				});
+			}
+		});
+	});
+}
+</script>
+<div class="line_grid">
+								<div class="g_9">
+									<input type="button" class="submitIt simple_buttons" value="Dodaj" onclick = "window.location.href='<?php echo $this->baseUrl();?>/admin.php/jobs/add';">
+									<input type="button" class="submitIt simple_buttons" value="Usun" id="delete-selected" id="delete-selected">
+									<input type="button" class="submitIt simple_buttons" value="Lista aplikacji na oferte" id="delete-selected" id="offer-selected">
+								</div>
+</div>

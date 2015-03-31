@@ -1,0 +1,33 @@
+<div class="column_left">
+					<div class="shadow_top"></div>
+					<div class="sub_menu">
+						<h2><i18n>apply.list</i18n></h2>
+						<ul>
+							<?php foreach($this->menu as $key => $value):
+                                echo '<li><a href='.$this->url(array('controller'=>'show','action'=>'jobspage','id'=>$value['id'])).'>'.$value['title'].'</a></li>';
+							    endforeach;
+							?>
+							<li><a href='<?php echo $this->url(array('controller'=>'show','action'=>'applyjobpage')); ?>'>Aplikuje na oferty pracy</a></li>
+						</ul>
+					</div>
+					<div class="shadow_bot"></div>
+					
+</div>
+<div class="column_center">
+<div class="main_content">
+<?php
+echo '<h2>'.$this->data['title'].'</h2>';
+echo '<p>'.$this->data['content'].'</p>';
+?>
+</div>
+</div>
+<div class="column_right">
+<div class="aplikuj">
+    <h3><i18n>apply</i18n></h3>
+	<i18n>apply.info</i18n>
+    
+    <div class="clean"></div>
+    <div class="hend"></div>
+    <div class="aplikuj_botton" onclick="window.location.href='<?php echo $this->url(array('controller'=>'show','action'=>'applyjobpage','id'=>$this->data['id'])); ?>';"><i18n>apply.button</i18n></div>
+</div>
+</div>

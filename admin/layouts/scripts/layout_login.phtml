@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CMS - INSELIS</title>
+		<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/admin/css/style.css'); ?>
+	 <?php echo $this->jQuery()->setCdnSsl(true)->setVersion('1.7')->enable()->setUiLocalPath('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')->UIenable(); ?>
+		<?php echo $this->headScript()->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.tipsy.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.collapsible.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.prettyPhoto.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/ui/jquery.colorbox.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/uniform.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.validationEngine-en.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.validationEngine.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/forms/jquery.dualListBox.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/datatable.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/tablesort.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/tables/resizable.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.sparkline.min.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.resize.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.pie.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.orderBars.js')
+									->appendFile($this->baseUrl().'/admin/js/plugins/charts/jquery.flot.js')
+									
+									
+									->appendFile($this->baseUrl().'/admin/js/jquery.ajaxfileupload.js')
+									->appendFile($this->baseUrl().'/admin/js/custom.js'); ?>
+	
+	
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="../Javascript/Flot/excanvas.js"></script>
+	<![endif]-->
+	<!-- The Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet">
+	
+</head>
+<body>
+	<!-- Change Pattern -->
+	<div class="changePattern">
+		<span id="pattern1"></span>
+		<span id="pattern2"></span>
+		<span id="pattern3"></span>
+		<span id="pattern4"></span>
+		<span id="pattern5"></span>
+		<span id="pattern6"></span>
+	</div>
+	<!-- Top Panel -->
+	<div class="top_panel">
+		<div class="wrapper">
+			<div class="user">
+				<img src="<?php echo $this->baseUrl(); ?>/admin/Images/user_avatar.png" alt="user_avatar" class="user_avatar">
+				<span class="label"><a href="#">Sign Up</a></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper contents_wrapper">
+		
+		<div class="login">
+			<div class="widget_header">
+				<h4 class="widget_header_title wwIcon i_16_login">Login</h4>
+			</div>
+			<div class="widget_contents lgNoPadding">
+			<?php echo $this->layout()->content; ?>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
